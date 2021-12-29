@@ -27,7 +27,11 @@ export function columnResizing({ handleWidth = 5, cellMinWidth = 25, View = Tabl
       },
 
       handleDOMEvents: {
-        mousemove(view, event) { handleMouseMove(view, event, handleWidth, cellMinWidth, lastColumnResizable) },
+        mousemove (view, event) {
+          requestAnimationFrame(() => {
+            handleMouseMove(view, event, handleWidth, cellMinWidth, lastColumnResizable)
+          })
+        },
         mouseleave(view) { handleMouseLeave(view) },
         mousedown(view, event) { handleMouseDown(view, event, cellMinWidth) }
       },
